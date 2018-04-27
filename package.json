@@ -1,0 +1,16 @@
+{
+  "name": "icebear",
+  "version": "1.0.0",
+  "description": "export json string to a json file or zip file in browser",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangrongda/icebear.git"
+  },
+  "keywords": ["json", "export", "browser"],
+  "author": "wangrongda",
+  "license": "ISC"
+}
