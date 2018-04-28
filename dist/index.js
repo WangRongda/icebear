@@ -6,16 +6,11 @@ var JsonFile = /** @class */ (function () {
         if ("object" === typeof raw) {
             raw = JSON.stringify(raw);
         }
-        else if ("string" == typeof raw) {
-            this.isJSON_test(raw);
-            console.error("不是合法的JSON");
-            return;
-        }
-        else {
-            console.error("非法参数");
-            return;
+        else if (!("string" == typeof raw && true === this.isJSON_test(raw))) {
+            throw "非合法JSON";
         }
         this.raw = raw;
+        this.blob = new Blob([this.raw], { type: 'application/json' });
     }
     JsonFile.prototype.fake_click = function () {
         var ev = document.createEvent("MouseEvents");
@@ -26,18 +21,17 @@ var JsonFile = /** @class */ (function () {
         if (typeof str == 'string') {
             try {
                 var obj = JSON.parse(str);
-                console.log('转换成功：' + obj);
+                // console.log('转换成功：' + obj);
                 return true;
             }
             catch (e) {
-                console.log('error：' + str + '!!!' + e);
+                // console.log('error：' + str + '!!!' + e);
                 return false;
             }
         }
-        console.log('It is not a string!');
+        // console.log('It is not a string!')
     };
     JsonFile.prototype.export2json = function (fileName) {
-        this.blob = new Blob([this.raw], { type: 'application/json' });
         this.elemLink.href = window.URL.createObjectURL(this.blob);
         this.elemLink.download = fileName;
         this.fake_click();
